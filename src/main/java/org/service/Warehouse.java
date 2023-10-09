@@ -23,13 +23,8 @@ public class Warehouse {
         //String name, double rating, double price, Product.Category category, Product.SubCategory subCategory
         Date createdDate = new Date();
         Date lastmodified = new Date();
-
-        int newId = productList.stream()
-                .mapToInt(Product::getId)
-                .max()
-                .orElse(0) + 1;
-
-        System.out.println(newId);
+        int newId = makeNewId();
+      
 
        Product newProduct = new Product(newId,"BASIC HEAVY WEIGHT T-SHIRT",3,17.99,Product.Category.MAN,Product.SubCategory.TSHIRTS,createdDate,lastmodified);
 
@@ -41,6 +36,13 @@ public class Warehouse {
 
     }
 
+    private static int makeNewId(){
+
+        return productList.stream()
+                .mapToInt(Product::getId)
+                .max()
+                .orElse(0) + 1;
+    }
 
     public static void updateAnExistingProduct(){
 
