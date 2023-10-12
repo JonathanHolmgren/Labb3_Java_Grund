@@ -8,13 +8,13 @@ import java.util.UUID;
 
 public class Product {
 
-     int id;
-     String name;
-     double rating;
-     double price;
-     Category category;
-     final LocalDate createdDate;
-     LocalDate lastmodified;
+    private int id;
+    private String name;
+    private double rating;
+    private double price;
+    private Category category;
+    private  final LocalDate createdDate;
+    private LocalDate lastmodified;
 
 
     public Product(int id, String name, double rating, double price, Category category) {
@@ -26,6 +26,18 @@ public class Product {
         this.createdDate = LocalDate.now();
         this.lastmodified = LocalDate.now();
     }
+
+    public Product(int id, String name, double rating, double price, Category category, LocalDate createdDate) {
+        this.id = id;
+        this.name = name;
+        this.rating = rating;
+        this.price = price;
+        this.category = category;
+        this.createdDate = createdDate;
+        this.lastmodified = LocalDate.now();
+    }
+
+
 
     public int getId() {
         return id;
