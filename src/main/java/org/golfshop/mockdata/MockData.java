@@ -17,15 +17,15 @@ public class MockData {
 
         ArrayList<Product> productList = new ArrayList<>();
 
-        productList.add(new Product("T200 - Steel",9,9999, Category.IRONS));
-        productList.add(new Product("Mavrik 22 - Steel",7,5499, Category.IRONS));
-        productList.add(new Product("JPX 921 HM 5-Pw - Steel",8,6999, Category.IRONS));
-        productList.add(new Product("M4 21 - steel",3,4699, Category.IRONS));
-        productList.add(new Product("Mavrik 22",5,2999, Category.DRIVER));
-        productList.add(new Product("SIM2 MAX Ventus BLue",9,3999, Category.DRIVER));
-        productList.add(new Product("Stealth 2 HD",7,5299, Category.DRIVER));
-        productList.add(new Product("Super Select Newport 2",9,4999, Category.PUTTER));
-        productList.add(new Product("Spider Tour Black SS",8,2499, Category.PUTTER));
+        productList.add(new Product(1,"T200 - Steel",9,9999, Category.IRONS));
+        productList.add(new Product(2,"Mavrik 22 - Steel",7,5499, Category.IRONS));
+        productList.add(new Product(3,"JPX 921 HM 5-Pw - Steel",8,6999, Category.IRONS));
+        productList.add(new Product(4,"M4 21 - steel",3,4699, Category.IRONS));
+        productList.add(new Product(5,"Mavrik 22",5,2999, Category.DRIVER));
+        productList.add(new Product(6,"SIM2 MAX Ventus BLue",9,3999, Category.DRIVER));
+        productList.add(new Product(7,"Stealth 2 HD",7,5299, Category.DRIVER));
+        productList.add(new Product(8,"Super Select Newport 2",9,4999, Category.PUTTER));
+        productList.add(new Product(9,"Spider Tour Black SS",8,2499, Category.PUTTER));
 
         return productList;
     }

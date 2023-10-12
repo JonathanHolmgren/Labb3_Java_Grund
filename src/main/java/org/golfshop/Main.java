@@ -15,11 +15,10 @@ public class Main {
        // example.showAll();
 
         example.createANewProduct("rrr",3,69,Category.DRIVER);
-        example.createANewProduct("gdfg",3,-69,Category.DRIVER);
-        System.out.println("hej");
-        example.createANewProduct("",3,69,Category.DRIVER);
+        example.createANewProduct("gdfg",3,69,Category.DRIVER);
 
-       // example.showAll();
+
+        example.showAll();
 
 
 

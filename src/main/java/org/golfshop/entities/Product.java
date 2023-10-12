@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class Product {
 
-     String id;
+     int id;
      String name;
      double rating;
      double price;
@@ -17,8 +17,8 @@ public class Product {
      LocalDate lastmodified;
 
 
-    public Product(String name, double rating, double price, Category category) {
-        this.id = UUID.randomUUID().toString();
+    public Product(int id, String name, double rating, double price, Category category) {
+        this.id = id;
         this.name = name;
         this.rating = rating;
         this.price = price;
@@ -27,11 +27,11 @@ public class Product {
         this.lastmodified = LocalDate.now();
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

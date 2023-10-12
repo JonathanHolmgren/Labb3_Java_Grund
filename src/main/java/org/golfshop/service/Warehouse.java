@@ -43,9 +43,16 @@ public class Warehouse {
         } else if (price < 0) {
             System.out.println("You have tried to create a product with a negative price");
         }
-        this.productList.add(new Product(name, rating, price, category));
+        this.productList.add(new Product(generateNewId(), name, rating, price, category));
 
     }
+ private int generateNewId(){
+    return productList.stream()
+            .mapToInt(Product::getId)
+            .max()
+            .orElse(0) + 1;
+}
+
 
 
     public static void updateAnExistingProduct() {
