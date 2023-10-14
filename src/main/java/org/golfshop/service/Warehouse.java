@@ -52,7 +52,6 @@ public class Warehouse {
     }
 
 
-
     public void addMockDateToWarehouse(){
         this.productList = getProducts();
     }
@@ -71,13 +70,13 @@ public class Warehouse {
         return id;
     }
 
-    // Funderat på om det är bäst att kasta ett felmeddelande eller att skriva ut en text.
+
     public void createANewProduct(String name, double rating, double price, Category category) {
 
         if (name.isEmpty()) {
-            System.out.println("You have tried to create a product without a name");
-        } else if (price < 0) {
-            System.out.println("You have tried to create a product with a negative price");
+            throw new IllegalArgumentException("You have tried to create a product without a name");
+        }else if (price < 0) {
+            throw new IllegalArgumentException("You have tried to create a product with a negative price");
         }
         this.productList.add(new Product(generateNewId(), name, rating, price, category));
     }
@@ -87,7 +86,7 @@ public class Warehouse {
     public void updateAnExistingProduct(int id, String name, double rating, Category category) {
 
         if (name.isEmpty()) {
-            System.out.println("You have tried to update a product without a name");
+            throw new IllegalArgumentException("You have tried to update a product without a name");
         }
         for (Product p : productList) {
             if (p.getId() == id) {
