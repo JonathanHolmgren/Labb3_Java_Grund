@@ -4,6 +4,7 @@ import org.golfshop.Category;
 
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Product {
@@ -15,6 +16,7 @@ public class Product {
     private Category category;
     private  final LocalDate createdDate;
     private LocalDate lastmodified;
+
 
 
     public Product(int id, String name, double rating, double price, Category category) {
@@ -36,7 +38,15 @@ public class Product {
         this.createdDate = createdDate;
         this.lastmodified = LocalDate.now();
     }
-
+    public Product(int id,String name, double rating, double price, Category category, LocalDate createdDate, LocalDate lastmodified) {
+        this.id = id;
+        this.name = name;
+        this.rating = rating;
+        this.price = price;
+        this.category = category;
+        this.createdDate = createdDate;
+        this.lastmodified = lastmodified;
+    }
 
 
     public int getId() {
@@ -90,6 +100,17 @@ public class Product {
     public void setLastmodified(LocalDate lastmodified) {
         this.lastmodified = lastmodified;
     }
-}
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(createdDate, product.createdDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(createdDate);
+    }}

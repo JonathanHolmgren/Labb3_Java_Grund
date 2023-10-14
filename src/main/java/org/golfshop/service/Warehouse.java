@@ -120,7 +120,7 @@ public class Warehouse {
     public List<ImmutableObjectProduct> getProductAfterDesiredDateDescendingOrder(LocalDate date) {
         return productList.stream()
                 .filter(product -> product.getCreatedDate().isAfter(date))
-                .sorted(Comparator.comparing(Product::getCreatedDate))
+                .sorted(Comparator.comparing(Product::getCreatedDate).reversed())
                 .map(this::createImmutableObject)
                 .toList();
     }

@@ -1,16 +1,18 @@
 package org.example;
 
-import org.assertj.core.internal.IterableElementComparisonStrategy;
 import org.golfshop.Category;
 import org.golfshop.entities.ImmutableObjectProduct;
 import org.golfshop.entities.Product;
 import org.golfshop.service.Warehouse;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Collections.reverseOrder;
 import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class WarehouseTest {
@@ -58,10 +60,53 @@ public class WarehouseTest {
         warehouseTest.createANewProduct("Test Driver", 9, 3999, Category.DRIVER);
 
         List<ImmutableObjectProduct> productList = warehouseTest.getAllProduct();
-
         assertThat(productList).hasSize(2);
+    }
+
+    @Test
+    public void ShouldReturnAllPutters() {
+        Warehouse warehouseTest = new Warehouse();
+        warehouseTest.addMockDateToWarehouse();
+        List<ImmutableObjectProduct> productList = warehouseTest.getProductByCategorySortAfterName(Category.PUTTER);
+        assertThat(productList).extracting("category").containsOnly(Category.PUTTER);
+
 
     }
 
+    @Test
+    public void returnSameCategorySortedByTheNameFromATOZ() {
+        Warehouse warehouseTest = new Warehouse();
+        warehouseTest.addMockDateToWarehouse();
+        assertThat(warehouseTest.getProductByCategorySortAfterName(Category.PUTTER).get(0).name()).startsWith("Sp");
+    }
+
+    @Test
+    public void ShouldOnlyReturnProductsCreatedAfterDesiredDate() {
+        Warehouse warehouseTest = new Warehouse();
+        warehouseTest.addMockDateToWarehouse();
+
+        List<ImmutableObjectProduct> productList = warehouseTest.getProductAfterDesiredDateDescendingOrder(LocalDate.of(2023, 9, 23));
+
+        boolean OnlyProductsAfterDesiredDate = productList.stream().anyMatch(p -> p.createdDate().isAfter(LocalDate.of(2023, 9, 23)));
+
+        assertThat(OnlyProductsAfterDesiredDate).isTrue();
+    }
+
+    @Test
+    public void getProductAfterDesiredDateShouldBeInDescendingOrder() {
+        Warehouse warehouseTest = new Warehouse();
+        warehouseTest.addMockDateToWarehouse();
+        LocalDate desiredDate = LocalDate.of(2023, 9, 23);
+        assertThat(warehouseTest.getProductAfterDesiredDateDescendingOrder(desiredDate)).extracting("createdDate").isSortedAccordingTo(reverseOrder());
+    }
+
+
+    @Test
+    public void ShouldOnlyReturnProductThatBeenModified() {
+        Warehouse warehouseTest = new Warehouse();
+        warehouseTest.addMockDateToWarehouse();
+
+        assertThat(warehouseTest.getProductThatHaveBeenModified().size()).isEqualTo(6);
+    }
 
 }

@@ -15,8 +15,8 @@ public class Main {
         Warehouse example = new Warehouse();
        example.addMockDateToWarehouse();
 
-        example.createANewProduct("rrr", 3, 69, Category.IRONS);
-        example.createANewProduct("rrr", 3, 69, Category.IRONS);
+        //example.createANewProduct("rrr", 3, 69, Category.IRONS);
+        //example.createANewProduct("rrr", 3, 69, Category.IRONS);
 
 
         example.showAll();
@@ -34,7 +34,7 @@ public class Main {
        // exp2.forEach(System.out::println);
 
         List<ImmutableObjectProduct> exp3 = example.getProductAfterDesiredDateDescendingOrder(LocalDate.of(2023, 9, 23));
-       // exp3.forEach(System.out::println);
+        exp3.forEach(System.out::println);
 
         List<ImmutableObjectProduct> exp4 = example.getProductThatHaveBeenModified();
       // exp4.forEach(System.out::println);
