@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 import static org.golfshop.mockdata.MockData.getProducts;
@@ -16,12 +15,14 @@ import static org.golfshop.mockdata.MockData.getProducts;
 
 public class Warehouse {
 
-    private final ArrayList<Product> productList;
+    private ArrayList<Product> productList;
 
     public Warehouse() {
-        this.productList = getProducts();
+        this.productList = new ArrayList<>();
     }
-
+    public ArrayList<Product> getProductList() {
+        return productList;
+    }
     private ImmutableObjectProduct createImmutableObject(Product product) {
         return new ImmutableObjectProduct(product.getId(),
                 product.getName(),
@@ -51,6 +52,25 @@ public class Warehouse {
     }
 
 
+
+    public void addMockDateToWarehouse(){
+        this.productList = getProducts();
+    }
+
+
+    private int generateNewId() {
+
+        int id = productList.stream()
+                .mapToInt(Product::getId)
+                .max()
+                .orElse(0);
+
+        if(id < 1) id = 1;
+        else id = id + 1;
+
+        return id;
+    }
+
     // Funderat på om det är bäst att kasta ett felmeddelande eller att skriva ut en text.
     public void createANewProduct(String name, double rating, double price, Category category) {
 
@@ -62,26 +82,22 @@ public class Warehouse {
         this.productList.add(new Product(generateNewId(), name, rating, price, category));
     }
 
-    private int generateNewId() {
-        return productList.stream()
-                .mapToInt(Product::getId)
-                .max()
-                .orElse(0) + 1;
-    }
+
 
     public void updateAnExistingProduct(int id, String name, double rating, Category category) {
 
-        if (!name.isEmpty()) {
-            for (Product p : productList) {
-                if (p.getId() == id) {
-                    p.setName(name);
-                    p.setRating(rating);
-                    p.setCategory(category);
-                    p.setLastmodified(LocalDate.now());
-                }
+        if (name.isEmpty()) {
+            System.out.println("You have tried to update a product without a name");
+        }
+        for (Product p : productList) {
+            if (p.getId() == id) {
+                p.setName(name);
+                p.setRating(rating);
+                p.setCategory(category);
+                p.setLastmodified(LocalDate.now());
             }
         }
-        System.out.println("You have tried to update a product without a name");
+
     }
     public List<ImmutableObjectProduct> getAllProduct() {
         return productList.stream()

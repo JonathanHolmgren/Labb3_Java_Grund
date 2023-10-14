@@ -1,7 +1,6 @@
 package org.golfshop;
 
 import org.golfshop.entities.ImmutableObjectProduct;
-import org.golfshop.entities.Product;
 import org.golfshop.service.Warehouse;
 
 import java.time.LocalDate;
@@ -14,10 +13,14 @@ public class Main {
     public static void main(String[] args) {
 
         Warehouse example = new Warehouse();
+       example.addMockDateToWarehouse();
 
-/*
-        example.showAll();
         example.createANewProduct("rrr", 3, 69, Category.IRONS);
+        example.createANewProduct("rrr", 3, 69, Category.IRONS);
+
+
+        example.showAll();
+   /*     example.createANewProduct("rrr", 3, 69, Category.IRONS);
         example.showAll();
         example.updateAnExistingProduct(10, "Stealth 2 Ryder Cup Europe", 7, Category.DRIVER);
         example.showAll();
@@ -34,7 +37,7 @@ public class Main {
        // exp3.forEach(System.out::println);
 
         List<ImmutableObjectProduct> exp4 = example.getProductThatHaveBeenModified();
-        exp4.forEach(System.out::println);
+      // exp4.forEach(System.out::println);
 
 
     }
