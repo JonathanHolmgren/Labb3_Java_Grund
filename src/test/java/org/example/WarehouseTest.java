@@ -96,8 +96,6 @@ public class WarehouseTest {
         List<ImmutableObjectProduct> productList = warehouseTest.getProductByCategorySortAfterName(Category.PUTTER);
 
         assertThat(productList).extracting("category").containsOnly(Category.PUTTER);
-
-
     }
 
     @Test
@@ -129,7 +127,6 @@ public class WarehouseTest {
         assertThat(warehouseTest.getProductAfterDesiredDateDescendingOrder(desiredDate)).extracting("createdDate").isSortedAccordingTo(reverseOrder());
     }
 
-
     @Test
     public void ShouldOnlyReturnProductThatBeenModified() {
         Warehouse warehouseTest = new Warehouse();
@@ -137,8 +134,5 @@ public class WarehouseTest {
 
         assertThat(warehouseTest.getProductThatHaveBeenModified().size()).isEqualTo(6);
 
-        warehouseTest.showAll();
     }
-
-
 }

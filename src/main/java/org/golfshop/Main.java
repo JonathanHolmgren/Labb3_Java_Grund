@@ -13,31 +13,32 @@ public class Main {
     public static void main(String[] args) {
 
         Warehouse example = new Warehouse();
-       example.addMockDateToWarehouse();
-
-        //example.createANewProduct("rrr", 3, 69, Category.IRONS);
-        //example.createANewProduct("rrr", 3, 69, Category.IRONS);
+        example.addMockDateToWarehouse();
 
 
-        example.showAll();
-   /*     example.createANewProduct("rrr", 3, 69, Category.IRONS);
-        example.showAll();
-        example.updateAnExistingProduct(10, "Stealth 2 Ryder Cup Europe", 7, Category.DRIVER);
-        example.showAll();
-*/
-      List<ImmutableObjectProduct> exp = example.getAllProduct();
-       // exp.forEach(System.out::println);
-      List<ImmutableObjectProduct> exp1 = example.getProductById(8);
-        // exp1.forEach(System.out::println);
+        // example.showAll();
 
+
+        // getAllProduct()
+        List<ImmutableObjectProduct> exp = example.getAllProduct();
+        exp.forEach(System.out::println);
+
+
+        // getProductById()
+        List<ImmutableObjectProduct> exp1 = example.getProductById(8);
+            exp1.forEach(System.out::println);
+
+        //     getProductByCategorySortAfterName()
         List<ImmutableObjectProduct> exp2 = example.getProductByCategorySortAfterName(Category.PUTTER);
-       // exp2.forEach(System.out::println);
+            exp2.forEach(System.out::println);
 
+        //    getProductAfterDesiredDateDescendingOrder()
         List<ImmutableObjectProduct> exp3 = example.getProductAfterDesiredDateDescendingOrder(LocalDate.of(2023, 9, 23));
-        exp3.forEach(System.out::println);
+            exp3.forEach(System.out::println);
 
+        //     getProductThatHaveBeenModified()
         List<ImmutableObjectProduct> exp4 = example.getProductThatHaveBeenModified();
-      // exp4.forEach(System.out::println);
+            exp4.forEach(System.out::println);
 
 
     }

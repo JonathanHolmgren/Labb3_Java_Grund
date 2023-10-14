@@ -20,9 +20,11 @@ public class Warehouse {
     public Warehouse() {
         this.productList = new ArrayList<>();
     }
+
     public ArrayList<Product> getProductList() {
         return productList;
     }
+
     private ImmutableObjectProduct createImmutableObject(Product product) {
         return new ImmutableObjectProduct(product.getId(),
                 product.getName(),
@@ -51,11 +53,9 @@ public class Warehouse {
 
     }
 
-
-    public void addMockDateToWarehouse(){
+    public void addMockDateToWarehouse() {
         this.productList = getProducts();
     }
-
 
     private int generateNewId() {
 
@@ -64,24 +64,21 @@ public class Warehouse {
                 .max()
                 .orElse(0);
 
-        if(id < 1) id = 1;
+        if (id < 1) id = 1;
         else id = id + 1;
 
         return id;
     }
 
-
     public void createANewProduct(String name, double rating, double price, Category category) {
 
         if (name.isEmpty()) {
             throw new IllegalArgumentException("You have tried to create a product without a name");
-        }else if (price < 0) {
+        } else if (price < 0) {
             throw new IllegalArgumentException("You have tried to create a product with a negative price");
         }
         this.productList.add(new Product(generateNewId(), name, rating, price, category));
     }
-
-
 
     public void updateAnExistingProduct(int id, String name, double rating, Category category) {
 
@@ -98,17 +95,20 @@ public class Warehouse {
         }
 
     }
+
     public List<ImmutableObjectProduct> getAllProduct() {
         return productList.stream()
                 .map(this::createImmutableObject)
                 .toList();
     }
+
     public List<ImmutableObjectProduct> getProductById(int id) {
         return productList.stream()
                 .filter(product -> product.getId() == id)
                 .map(this::createImmutableObject)
                 .toList();
     }
+
     public List<ImmutableObjectProduct> getProductByCategorySortAfterName(Category category) {
         return productList.stream()
                 .filter(product -> product.getCategory().equals(category))
@@ -116,6 +116,7 @@ public class Warehouse {
                 .map(this::createImmutableObject)
                 .toList();
     }
+
     public List<ImmutableObjectProduct> getProductAfterDesiredDateDescendingOrder(LocalDate date) {
         return productList.stream()
                 .filter(product -> product.getCreatedDate().isAfter(date))
@@ -123,6 +124,7 @@ public class Warehouse {
                 .map(this::createImmutableObject)
                 .toList();
     }
+
     public List<ImmutableObjectProduct> getProductThatHaveBeenModified() {
         return productList.stream()
                 .filter(product -> !product.getCreatedDate().isEqual(product.getLastmodified()))
